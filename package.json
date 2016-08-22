@@ -1,59 +1,70 @@
 {
   "name": "zwatch",
-  "version": "0.1.7",
-  "private": true,
-  "jest": {
-    "preset": "jest-react-native",
-    "moduleNameMapper": {
-      "\\./datepicker$": "<rootDir>/node_modules/tcomb-form-native/lib/templates/bootstrap/datepicker.ios.js"
-    },
-    "preprocessorIgnorePatterns": [
-      "node_modules/(?!react-native|tcomb-form-native|apsl-react-native-button)"
-    ],
-    "collectCoverage": true,
-    "verbose": true
+  "author": "Futurice",
+  "description": "React Native App Starter Kit for Android and iOS",
+  "license": "MIT",
+  "homepage": "http://getpepperoni.com",
+  "bugs": "https://github.com/futurice/pepperoni-app-kit/issues",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/futurice/pepperoni-app-kit"
   },
+  "keywords": [
+    "React Native",
+    "Starter Kit",
+    "Bitrise",
+    "Redux",
+    "Auth0"
+  ],
+  "version": "1.0.0",
+  "private": false,
   "scripts": {
-    "test": "jest",
-    "start": "react-native start",
-    "test:watch": "npm run test -- --watch",
-    "test-chrome": "node-debug --preload false --nodejs --harmony jest --runInBand",
-    "docs": "./node_modules/docker/docker -w -i src/ -o ../snowflake-pages "
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "bundle:ios": "node ./node_modules/react-native/local-cli/cli.js bundle --platform ios --entry-file index.ios.js --bundle-output ios/zwatch/main.jsbundle --dev=false --minify --verbose",
+    "test": "mocha src/**/*.spec.js",
+    "test:watch": "chokidar 'src/**/*.js' 'test/**/*.js' -c 'npm test'",
+    "lint": "eslint src test",
+    "coverage": "rimraf coverage && istanbul cover --i=src/**/*.js _mocha -- src/**/*.spec.js",
+    "check-coverage": "istanbul check-coverage coverage/coverage.json"
   },
   "dependencies": {
-    "apsl-react-native-button": "3.0.0",
-    "immutable": "3.8.1",
-    "key-mirror": "1.0.1",
-    "react": "15.2.1",
-    "react-mixin": "^2.0.2",
-    "react-native": "0.30.0",
-    "react-native-i18n": "0.0.8",
-    "react-native-navbar": "1.5.0",
-    "react-native-router-flux": "3.31.1",
-    "react-native-simple-auth":"^0.3.0",
-    "react-native-simple-store": "1.0.1",
-    "react-native-simpledialog-android": "1.0.7",
-    "react-native-vector-icons": "2.0.3",
-    "react-redux": "4.4.5",
-    "react-timer-mixin": "^0.13.3",
-    "redux": "3.5.2",
-    "redux-thunk": "2.1.0",
-    "regenerator": "0.8.46",
-    "tcomb-form-native": "0.5.3",
-    "undefined": "0.1.0",
-    "underscore": "1.8.3",
-    "validate.js": "0.9.0"
+    "bluebird": "^3.3.5",
+    "es6-symbol": "^3.0.2",
+    "event-emitter": "^0.3.4",
+    "immutable": "^3.7.6",
+    "lodash": "^4.11.0",
+    "moment": "^2.12.0",
+    "react": "~15.2.0",
+    "react-dom": "~15.2.0",
+    "react-native": "^0.29.0",
+    "react-native-lock": "futurice/react-native-lock#feature/customizedTheme",
+    "react-redux": "^4.4.5",
+    "redux": "^3.4.0",
+    "redux-logger": "^2.6.1",
+    "redux-loop": "^2.1.0",
+    "redux-promise": "^0.5.3",
+    "redux-thunk": "^2.0.1",
+    "standard-http-error": "^2.0.0"
   },
   "devDependencies": {
-    "babel-core": "6.9.0",
-    "babel-jest": "14.0.0",
-    "babel-preset-react-native": "1.8.0",
-    "docker": "1.0.0",
-    "istanbul": "0.4.3",
-    "jest": "14.0.0",
-    "jest-react-native": "14.0.0",
+    "babel-core": "^6.9.0",
+    "babel-eslint": "^6.0.2",
+    "babel-polyfill": "^6.9.0",
+    "babel-preset-react-native": "^1.7.0",
+    "babel-preset-stage-0": "^6.5.0",
+    "babel-register": "^6.9.0",
+    "chai": "^3.5.0",
+    "chokidar-cli": "^1.2.0",
+    "enzyme": "^2.2.0",
+    "eslint": "^2.8.0",
+    "eslint-plugin-babel": "^3.2.0",
+    "eslint-plugin-react": "^4.3.0",
+    "fetch-mock": "^4.5.4",
+    "istanbul": "1.0.0-alpha.2",
+    "mocha": "^2.4.5",
     "react-addons-test-utils": "15.0.2",
-    "redux-mock-store": "1.1.2",
-    "rnpm-plugin-upgrade": "0.26.0"
+    "react-native-mock": "~0.2.5",
+    "rimraf": "^2.5.2",
+    "sinon": "^1.17.4"
   }
 }
